@@ -1,12 +1,12 @@
 {
-  "tag_name": "v0.1.6",
-  "name": "Trickle v0.1.6",
+  "tag_name": "v0.1.7",
+  "name": "Trickle v0.1.7",
   "assets": [
     {
-      "url": "https://api.github.com/repos/kiruna-labs/trickle-releases/releases/assets/352497403",
-      "id": 352497403,
-      "node_id": "RA_kwDORLIGTM4VAq77",
-      "name": "Trickle_0.1.6_aarch64.dmg",
+      "url": "https://api.github.com/repos/kiruna-labs/trickle-releases/releases/assets/352661593",
+      "id": 352661593,
+      "node_id": "RA_kwDORLIGTM4VBTBZ",
+      "name": "Trickle_0.1.7_aarch64.dmg",
       "label": "",
       "uploader": {
         "login": "llitllit",
@@ -31,18 +31,18 @@
       },
       "content_type": "application/zip",
       "state": "uploaded",
-      "size": 8208782,
-      "digest": "sha256:55bd56e1b5f1dbe70ebcde985ad98d11b7cf8f821c0e88d48d9f4de498480a37",
+      "size": 8205422,
+      "digest": "sha256:3fdba6dac5630b2b17d9055fedeb8c8b11070f14279f73532005755c64d65472",
       "download_count": 0,
-      "created_at": "2026-02-08T06:15:43Z",
-      "updated_at": "2026-02-08T06:15:44Z",
-      "browser_download_url": "https://github.com/kiruna-labs/trickle-releases/releases/download/v0.1.6/Trickle_0.1.6_aarch64.dmg"
+      "created_at": "2026-02-08T16:46:35Z",
+      "updated_at": "2026-02-08T16:46:36Z",
+      "browser_download_url": "https://github.com/kiruna-labs/trickle-releases/releases/download/v0.1.7/Trickle_0.1.7_aarch64.dmg"
     },
     {
-      "url": "https://api.github.com/repos/kiruna-labs/trickle-releases/releases/assets/352497707",
-      "id": 352497707,
-      "node_id": "RA_kwDORLIGTM4VArAr",
-      "name": "Trickle_0.1.6_x64.dmg",
+      "url": "https://api.github.com/repos/kiruna-labs/trickle-releases/releases/assets/352661965",
+      "id": 352661965,
+      "node_id": "RA_kwDORLIGTM4VBTHN",
+      "name": "Trickle_0.1.7_x64.dmg",
       "label": "",
       "uploader": {
         "login": "llitllit",
@@ -67,17 +67,17 @@
       },
       "content_type": "application/zip",
       "state": "uploaded",
-      "size": 8377789,
-      "digest": "sha256:e04bffb5e0aee4d1bc26eef316a5ebbb1790724c071b40acc362caef0be71f91",
+      "size": 8380745,
+      "digest": "sha256:f57b4b61cf2df34afafe489c9baee9bec5ffdc80cd61cbd5a0b1d901ae2c0d28",
       "download_count": 0,
-      "created_at": "2026-02-08T06:17:17Z",
-      "updated_at": "2026-02-08T06:17:17Z",
-      "browser_download_url": "https://github.com/kiruna-labs/trickle-releases/releases/download/v0.1.6/Trickle_0.1.6_x64.dmg"
+      "created_at": "2026-02-08T16:49:08Z",
+      "updated_at": "2026-02-08T16:49:08Z",
+      "browser_download_url": "https://github.com/kiruna-labs/trickle-releases/releases/download/v0.1.7/Trickle_0.1.7_x64.dmg"
     },
     {
-      "url": "https://api.github.com/repos/kiruna-labs/trickle-releases/releases/assets/352497405",
-      "id": 352497405,
-      "node_id": "RA_kwDORLIGTM4VAq79",
+      "url": "https://api.github.com/repos/kiruna-labs/trickle-releases/releases/assets/352661597",
+      "id": 352661597,
+      "node_id": "RA_kwDORLIGTM4VBTBd",
       "name": "Trickle_aarch64.app.tar.gz",
       "label": "",
       "uploader": {
@@ -103,17 +103,17 @@
       },
       "content_type": "application/zip",
       "state": "uploaded",
-      "size": 7907740,
-      "digest": "sha256:ac8a48f975b4709a4fc16127f5b36309a09a34544ad5700f9e7ba0fc22492e76",
+      "size": 7906001,
+      "digest": "sha256:8afcffb7d3e6422a5dd952f0ad4585a3154968350bc18e8c46a9ecbd555b25fd",
       "download_count": 0,
-      "created_at": "2026-02-08T06:15:44Z",
-      "updated_at": "2026-02-08T06:15:44Z",
-      "browser_download_url": "https://github.com/kiruna-labs/trickle-releases/releases/download/v0.1.6/Trickle_aarch64.app.tar.gz"
+      "created_at": "2026-02-08T16:46:36Z",
+      "updated_at": "2026-02-08T16:46:37Z",
+      "browser_download_url": "https://github.com/kiruna-labs/trickle-releases/releases/download/v0.1.7/Trickle_aarch64.app.tar.gz"
     },
     {
-      "url": "https://api.github.com/repos/kiruna-labs/trickle-releases/releases/assets/352497415",
-      "id": 352497415,
-      "node_id": "RA_kwDORLIGTM4VAq8H",
+      "url": "https://api.github.com/repos/kiruna-labs/trickle-releases/releases/assets/352661604",
+      "id": 352661604,
+      "node_id": "RA_kwDORLIGTM4VBTBk",
       "name": "Trickle_aarch64.app.tar.gz.sig",
       "label": "",
       "uploader": {
@@ -140,16 +140,16 @@
       "content_type": "application/pgp-signature",
       "state": "uploaded",
       "size": 416,
-      "digest": "sha256:9496e99c183ca02aa85bd83131236efbe80e5a34fc63db7ae35875f748a6e642",
+      "digest": "sha256:520295fb71e1a8d664038fbd44d02e208d981b0adff3cca2188096ef7117e1e2",
       "download_count": 0,
-      "created_at": "2026-02-08T06:15:47Z",
-      "updated_at": "2026-02-08T06:15:47Z",
-      "browser_download_url": "https://github.com/kiruna-labs/trickle-releases/releases/download/v0.1.6/Trickle_aarch64.app.tar.gz.sig"
+      "created_at": "2026-02-08T16:46:41Z",
+      "updated_at": "2026-02-08T16:46:41Z",
+      "browser_download_url": "https://github.com/kiruna-labs/trickle-releases/releases/download/v0.1.7/Trickle_aarch64.app.tar.gz.sig"
     },
     {
-      "url": "https://api.github.com/repos/kiruna-labs/trickle-releases/releases/assets/352497717",
-      "id": 352497717,
-      "node_id": "RA_kwDORLIGTM4VArA1",
+      "url": "https://api.github.com/repos/kiruna-labs/trickle-releases/releases/assets/352661979",
+      "id": 352661979,
+      "node_id": "RA_kwDORLIGTM4VBTHb",
       "name": "Trickle_x64.app.tar.gz",
       "label": "",
       "uploader": {
@@ -175,17 +175,17 @@
       },
       "content_type": "application/zip",
       "state": "uploaded",
-      "size": 8079529,
-      "digest": "sha256:fd6b3293e2b0e8e83ee512db167d8fa638471eb75869f9a21f1e2da562249048",
+      "size": 8083865,
+      "digest": "sha256:7443847252063e9907d5dbf7a4e30a57ae767f357d4961cb1584c79066b26f80",
       "download_count": 0,
-      "created_at": "2026-02-08T06:17:18Z",
-      "updated_at": "2026-02-08T06:17:19Z",
-      "browser_download_url": "https://github.com/kiruna-labs/trickle-releases/releases/download/v0.1.6/Trickle_x64.app.tar.gz"
+      "created_at": "2026-02-08T16:49:09Z",
+      "updated_at": "2026-02-08T16:49:10Z",
+      "browser_download_url": "https://github.com/kiruna-labs/trickle-releases/releases/download/v0.1.7/Trickle_x64.app.tar.gz"
     },
     {
-      "url": "https://api.github.com/repos/kiruna-labs/trickle-releases/releases/assets/352497736",
-      "id": 352497736,
-      "node_id": "RA_kwDORLIGTM4VArBI",
+      "url": "https://api.github.com/repos/kiruna-labs/trickle-releases/releases/assets/352662163",
+      "id": 352662163,
+      "node_id": "RA_kwDORLIGTM4VBTKT",
       "name": "Trickle_x64.app.tar.gz.sig",
       "label": "",
       "uploader": {
@@ -212,11 +212,11 @@
       "content_type": "application/pgp-signature",
       "state": "uploaded",
       "size": 412,
-      "digest": "sha256:2142546eef46aca6a16748867073036b8e6c3d69e574a4252b04b744c7ff6d05",
+      "digest": "sha256:107056ae63c7818af9f43c0f95a22748038a630cdb372e455755b68a3b65f878",
       "download_count": 0,
-      "created_at": "2026-02-08T06:17:24Z",
-      "updated_at": "2026-02-08T06:17:24Z",
-      "browser_download_url": "https://github.com/kiruna-labs/trickle-releases/releases/download/v0.1.6/Trickle_x64.app.tar.gz.sig"
+      "created_at": "2026-02-08T16:49:13Z",
+      "updated_at": "2026-02-08T16:49:14Z",
+      "browser_download_url": "https://github.com/kiruna-labs/trickle-releases/releases/download/v0.1.7/Trickle_x64.app.tar.gz.sig"
     }
   ]
 }
