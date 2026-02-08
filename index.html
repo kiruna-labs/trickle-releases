@@ -101,6 +101,12 @@
       color: #5a5f68;
     }
 
+    .auto-download-msg {
+      margin-top: 12px;
+      font-size: 14px;
+      color: #8a8f98;
+    }
+
     /* All platforms */
     .section-title {
       font-size: 14px;
@@ -298,8 +304,13 @@
 
     function detectOS() {
       const ua = navigator.userAgent;
-      if (/Mac/.test(ua)) return navigator.userAgent.includes('ARM') || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) ? 'mac-arm' : 'mac-intel';
-      return 'unknown';
+      if (!/Mac/.test(ua)) return 'unknown';
+      // navigator.userAgentData.architecture is 'arm' on Apple Silicon in Chromium browsers
+      const arch = navigator.userAgentData?.architecture;
+      if (arch === 'arm') return 'mac-arm';
+      if (arch === 'x86') return 'mac-intel';
+      // Safari doesn't expose architecture — default to Apple Silicon since most Macs since 2020 are ARM
+      return 'mac-arm';
     }
 
     function formatSize(bytes) {
@@ -350,10 +361,11 @@
       if (primary) {
         html += `
           <div class="primary-download">
-            <a class="download-btn" href="${primary.browser_download_url}">
+            <a class="download-btn" id="primary-dl" href="${primary.browser_download_url}">
               ${icons.apple} Download for Mac
             </a>
             <div class="primary-meta">${primaryDetail}</div>
+            <div class="auto-download-msg" id="auto-dl-msg">Your download should start automatically.</div>
           </div>`;
       }
 
@@ -374,20 +386,28 @@
       // macOS instructions (always shown)
       html += `
         <div class="instructions">
-          <h3>Opening on macOS</h3>
+          <h3>⚠ Not notarized yet</h3>
+          <p style="font-size: 14px; color: #b0b5be; margin-bottom: 14px;">Trickle isn't notarized by Apple yet, so macOS will block it the first time you open it. Here's how to allow it:</p>
           <ol>
             <li>Open the <code>.dmg</code> and drag Trickle to Applications</li>
             <li><strong>Right-click</strong> the app in Applications and choose <strong>Open</strong></li>
             <li>Click <strong>Open</strong> in the dialog that appears</li>
           </ol>
           <div class="alt">
-            Or run in Terminal:
+            Or remove the quarantine flag in Terminal:
             <code>xattr -cr /Applications/Trickle.app</code>
           </div>
-          <div class="note">This is needed because the app is not yet code-signed. Signing will be added soon.</div>
+          <div class="note">Notarization is coming soon — this step won't be needed for long.</div>
         </div>`;
 
       document.getElementById('content').innerHTML = html;
+
+      // Auto-start download after a short delay
+      if (primary) {
+        setTimeout(() => {
+          window.location.href = primary.browser_download_url;
+        }, 500);
+      }
     }
 
     // Try static latest.json first, fall back to GitHub API
