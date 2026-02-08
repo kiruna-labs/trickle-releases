@@ -1,0 +1,16 @@
+{
+  "tag_name": "v0.1.0",
+  "name": "Trickle v0.1.0",
+  "assets": [
+    {
+      "name": "Trickle_0.1.0_aarch64.dmg",
+      "size": 9600155,
+      "browser_download_url": "https://github.com/kiruna-labs/trickle-releases/releases/download/v0.1.0/Trickle_0.1.0_aarch64.dmg"
+    },
+    {
+      "name": "Trickle_0.1.0_x64.dmg",
+      "size": 9931771,
+      "browser_download_url": "https://github.com/kiruna-labs/trickle-releases/releases/download/v0.1.0/Trickle_0.1.0_x64.dmg"
+    }
+  ]
+}
