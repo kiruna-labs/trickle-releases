@@ -101,12 +101,6 @@
       color: #5a5f68;
     }
 
-    .auto-download-msg {
-      margin-top: 12px;
-      font-size: 14px;
-      color: #8a8f98;
-    }
-
     /* All platforms */
     .section-title {
       font-size: 14px;
@@ -178,21 +172,28 @@
 
     /* macOS instructions */
     .instructions {
-      background: #161821;
-      border: 1px solid #22252f;
+      background: #1a1510;
+      border: 1px solid #3d2e15;
       border-radius: 12px;
       padding: 24px;
       margin-bottom: 48px;
     }
 
     .instructions h3 {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 600;
-      color: #fff;
-      margin-bottom: 14px;
+      color: #f5a623;
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
       gap: 8px;
+    }
+
+    .instructions .subtitle {
+      font-size: 14px;
+      color: #8a8f98;
+      margin-bottom: 16px;
+      line-height: 1.5;
     }
 
     .instructions ol {
@@ -211,19 +212,56 @@
       padding: 2px 6px;
     }
 
-    .instructions .alt {
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid #22252f;
-      font-size: 13px;
-      color: #5a5f68;
+    .instructions .command-block {
+      margin-top: 16px;
+      background: #12141c;
+      border: 1px solid #2a2d37;
+      border-radius: 8px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
     }
 
-    .instructions .alt code {
-      display: block;
-      margin-top: 6px;
-      padding: 8px 12px;
+    .instructions .command-block code {
+      font-size: 14px;
+      background: none;
+      border: none;
+      padding: 0;
+      color: #e0e0e0;
+    }
+
+    .instructions .copy-btn {
+      background: #2a2d37;
+      border: 1px solid #3a3d47;
       border-radius: 6px;
+      color: #8a8f98;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 12px;
+      padding: 4px 10px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .instructions .copy-btn:hover {
+      background: #3a3d47;
+      color: #e0e0e0;
+    }
+
+    .instructions .alt {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #2a2215;
+      font-size: 13px;
+      color: #6a6f78;
+    }
+
+    .instructions .alt ol {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #6a6f78;
     }
 
     .instructions .note {
@@ -304,13 +342,8 @@
 
     function detectOS() {
       const ua = navigator.userAgent;
-      if (!/Mac/.test(ua)) return 'unknown';
-      // navigator.userAgentData.architecture is 'arm' on Apple Silicon in Chromium browsers
-      const arch = navigator.userAgentData?.architecture;
-      if (arch === 'arm') return 'mac-arm';
-      if (arch === 'x86') return 'mac-intel';
-      // Safari doesn't expose architecture — default to Apple Silicon since most Macs since 2020 are ARM
-      return 'mac-arm';
+      if (/Mac/.test(ua)) return navigator.userAgent.includes('ARM') || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) ? 'mac-arm' : 'mac-intel';
+      return 'unknown';
     }
 
     function formatSize(bytes) {
@@ -361,11 +394,10 @@
       if (primary) {
         html += `
           <div class="primary-download">
-            <a class="download-btn" id="primary-dl" href="${primary.browser_download_url}">
+            <a class="download-btn" href="${primary.browser_download_url}">
               ${icons.apple} Download for Mac
             </a>
             <div class="primary-meta">${primaryDetail}</div>
-            <div class="auto-download-msg" id="auto-dl-msg">Your download should start automatically.</div>
           </div>`;
       }
 
@@ -386,28 +418,25 @@
       // macOS instructions (always shown)
       html += `
         <div class="instructions">
-          <h3>⚠ Not notarized yet</h3>
-          <p style="font-size: 14px; color: #b0b5be; margin-bottom: 14px;">Trickle isn't notarized by Apple yet, so macOS will block it the first time you open it. Here's how to allow it:</p>
-          <ol>
-            <li>Open the <code>.dmg</code> and drag Trickle to Applications</li>
-            <li><strong>Right-click</strong> the app in Applications and choose <strong>Open</strong></li>
-            <li>Click <strong>Open</strong> in the dialog that appears</li>
-          </ol>
-          <div class="alt">
-            Or remove the quarantine flag in Terminal:
+          <h3>\u26a0\ufe0f Important: first-time setup</h3>
+          <p class="subtitle">macOS will show \u201cTrickle is damaged and can\u2019t be opened\u201d because the app isn\u2019t notarized yet. To fix this, open Terminal and run:</p>
+          <div class="command-block">
             <code>xattr -cr /Applications/Trickle.app</code>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('xattr -cr /Applications/Trickle.app').then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)})">Copy</button>
           </div>
-          <div class="note">Notarization is coming soon — this step won't be needed for long.</div>
+          <div class="alt">
+            <strong>Full steps:</strong>
+            <ol>
+              <li>Open the <code>.dmg</code> and drag Trickle to Applications</li>
+              <li>Open <strong>Terminal</strong> (search for it in Spotlight)</li>
+              <li>Paste the command above and press Enter</li>
+              <li>Open Trickle normally \u2014 it will launch without issues</li>
+            </ol>
+          </div>
+          <div class="note">This is only needed once. Code signing will be added in a future update.</div>
         </div>`;
 
       document.getElementById('content').innerHTML = html;
-
-      // Auto-start download after a short delay
-      if (primary) {
-        setTimeout(() => {
-          window.location.href = primary.browser_download_url;
-        }, 500);
-      }
     }
 
     // Try static latest.json first, fall back to GitHub API
