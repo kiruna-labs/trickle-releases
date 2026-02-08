@@ -2,10 +2,411 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0;url=/download">
-  <title>Trickle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Trickle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0f1117;
+      color: #e0e0e0;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 80px 24px 120px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .logo {
+      width: 96px;
+      height: 96px;
+      border-radius: 22px;
+      margin-bottom: 24px;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      font-size: 17px;
+      color: #8a8f98;
+      line-height: 1.5;
+    }
+
+    .version-badge {
+      display: inline-block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: #8a8f98;
+      background: #1a1d27;
+      border: 1px solid #2a2d37;
+      border-radius: 6px;
+      padding: 3px 10px;
+      margin-top: 12px;
+    }
+
+    /* Primary download */
+    .primary-download {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #e8731a, #f5a623);
+      color: #fff;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 24px rgba(232, 115, 26, 0.25);
+    }
+
+    .download-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 32px rgba(232, 115, 26, 0.35);
+    }
+
+    .download-btn:active { transform: translateY(0); }
+
+    .download-btn svg { width: 20px; height: 20px; fill: currentColor; }
+
+    .primary-meta {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #5a5f68;
+    }
+
+    /* All platforms */
+    .section-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #5a5f68;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .platforms {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 540px) {
+      .platforms { grid-template-columns: 1fr; }
+    }
+
+    .platform-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #161821;
+      border: 1px solid #22252f;
+      border-radius: 12px;
+      padding: 16px 18px;
+      text-decoration: none;
+      color: #e0e0e0;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .platform-card:hover {
+      border-color: #3a3d47;
+      background: #1a1d27;
+    }
+
+    .platform-card .icon {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .platform-card .icon svg {
+      width: 28px;
+      height: 28px;
+      fill: #8a8f98;
+    }
+
+    .platform-card .info { flex: 1; min-width: 0; }
+
+    .platform-card .name {
+      font-size: 15px;
+      font-weight: 500;
+      color: #fff;
+    }
+
+    .platform-card .detail {
+      font-size: 12px;
+      font-family: 'IBM Plex Mono', monospace;
+      color: #5a5f68;
+      margin-top: 2px;
+    }
+
+    /* macOS instructions */
+    .instructions {
+      background: #161821;
+      border: 1px solid #22252f;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 48px;
+    }
+
+    .instructions h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .instructions ol {
+      padding-left: 20px;
+      line-height: 1.8;
+      font-size: 14px;
+      color: #b0b5be;
+    }
+
+    .instructions code {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      background: #1e2030;
+      border: 1px solid #2a2d37;
+      border-radius: 4px;
+      padding: 2px 6px;
+    }
+
+    .instructions .alt {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid #22252f;
+      font-size: 13px;
+      color: #5a5f68;
+    }
+
+    .instructions .alt code {
+      display: block;
+      margin-top: 6px;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    .instructions .note {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #5a5f68;
+      font-style: italic;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      font-size: 13px;
+      color: #3a3d47;
+    }
+
+    .footer a {
+      color: #5a5f68;
+      text-decoration: none;
+    }
+
+    .footer a:hover { color: #8a8f98; }
+
+    /* Loading state */
+    .loading {
+      text-align: center;
+      padding: 40px 0;
+      color: #5a5f68;
+      font-size: 14px;
+    }
+
+    .loading .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #2a2d37;
+      border-top-color: #e8731a;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      margin-bottom: 12px;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .error-msg {
+      text-align: center;
+      padding: 24px;
+      color: #8a8f98;
+      font-size: 14px;
+    }
+
+    .error-msg a { color: #e8731a; }
+  </style>
 </head>
 <body>
-  <p>Redirecting to <a href="/download">download</a>...</p>
+  <div class="page">
+    <div class="header">
+      <img class="logo" src="/logo-rounded.png" alt="Trickle" onerror="this.style.display='none'">
+      <h1>Download Trickle</h1>
+      <p>AI chat that works on bad connections.</p>
+      <div class="version-badge" id="version">loading...</div>
+    </div>
+
+    <div id="content">
+      <div class="loading">
+        <div class="spinner"></div>
+        <div>Fetching latest release...</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://github.com/kiruna-labs/trickle-releases">GitHub</a>
+    </div>
+  </div>
+
+  <script>
+    const REPO = 'kiruna-labs/trickle-releases';
+
+    function detectOS() {
+      const ua = navigator.userAgent;
+      if (/Mac/.test(ua)) return navigator.userAgent.includes('ARM') || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) ? 'mac-arm' : 'mac-intel';
+      return 'unknown';
+    }
+
+    function formatSize(bytes) {
+      const mb = bytes / (1024 * 1024);
+      return mb >= 100 ? `${Math.round(mb)} MB` : `${mb.toFixed(1)} MB`;
+    }
+
+    const icons = {
+      apple: '<svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>',
+      download: '<svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zm7-18L5.33 8.67l1.42 1.41L11 5.83V16h2V5.83l4.25 4.25 1.42-1.41L12 2z" transform="rotate(180 12 12)"/></svg>'
+    };
+
+    function findAsset(assets, pattern) {
+      return assets.find(a => pattern.test(a.name));
+    }
+
+    function render(release) {
+      const assets = release.assets;
+      const version = release.tag_name;
+
+      document.getElementById('version').textContent = version;
+
+      const dmgArm = findAsset(assets, /aarch64\.dmg$/);
+      const dmgIntel = findAsset(assets, /x64\.dmg$/);
+
+      const os = detectOS();
+
+      let primary, primaryDetail;
+      if (os === 'mac-arm' && dmgArm) {
+        primary = dmgArm;
+        primaryDetail = `Apple Silicon .dmg \u2022 ${formatSize(primary.size)}`;
+      } else if (os === 'mac-intel' && dmgIntel) {
+        primary = dmgIntel;
+        primaryDetail = `Intel .dmg \u2022 ${formatSize(primary.size)}`;
+      } else {
+        primary = dmgArm || dmgIntel;
+        primaryDetail = primary ? `.dmg \u2022 ${formatSize(primary.size)}` : '';
+      }
+
+      const allPlatforms = [
+        { asset: dmgArm, name: 'macOS', detail: 'Apple Silicon .dmg', icon: icons.apple },
+        { asset: dmgIntel, name: 'macOS', detail: 'Intel .dmg', icon: icons.apple },
+      ].filter(p => p.asset);
+
+      let html = '';
+
+      // Primary download button
+      if (primary) {
+        html += `
+          <div class="primary-download">
+            <a class="download-btn" href="${primary.browser_download_url}">
+              ${icons.apple} Download for Mac
+            </a>
+            <div class="primary-meta">${primaryDetail}</div>
+          </div>`;
+      }
+
+      // All platforms grid
+      html += `<div class="section-title">All downloads</div><div class="platforms">`;
+      for (const p of allPlatforms) {
+        html += `
+          <a class="platform-card" href="${p.asset.browser_download_url}">
+            <div class="icon">${p.icon}</div>
+            <div class="info">
+              <div class="name">${p.name}</div>
+              <div class="detail">${p.detail} \u2022 ${formatSize(p.asset.size)}</div>
+            </div>
+          </a>`;
+      }
+      html += `</div>`;
+
+      // macOS instructions (always shown)
+      html += `
+        <div class="instructions">
+          <h3>Opening on macOS</h3>
+          <ol>
+            <li>Open the <code>.dmg</code> and drag Trickle to Applications</li>
+            <li><strong>Right-click</strong> the app in Applications and choose <strong>Open</strong></li>
+            <li>Click <strong>Open</strong> in the dialog that appears</li>
+          </ol>
+          <div class="alt">
+            Or run in Terminal:
+            <code>xattr -cr /Applications/Trickle.app</code>
+          </div>
+          <div class="note">This is needed because the app is not yet code-signed. Signing will be added soon.</div>
+        </div>`;
+
+      document.getElementById('content').innerHTML = html;
+    }
+
+    // Try static latest.json first, fall back to GitHub API
+    fetch('/latest.json')
+      .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+      .then(render)
+      .catch(() =>
+        fetch(`https://api.github.com/repos/${REPO}/releases/latest`)
+          .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+          .then(render)
+      )
+      .catch(() => {
+        document.getElementById('version').textContent = '';
+        document.getElementById('content').innerHTML = `
+          <div class="error-msg">
+            Couldn't load release info.<br>
+            <a href="https://github.com/${REPO}/releases/latest">Download from GitHub</a>
+          </div>`;
+      });
+  </script>
 </body>
 </html>
